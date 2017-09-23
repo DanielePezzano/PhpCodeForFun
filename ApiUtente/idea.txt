@@ -1,0 +1,42 @@
+Apiutente deve essere un api per la gestione delle utenze
+
+1) di N applicazioni
+2) ogni Applicazione ha la sua cifratura scelta tra le disponibili
+3) la parte per la gestione dei dati delle applicazioni sta su sql
+4) i dati degli utenti sono su tabelle Mongo 
+
+
+Chiamate:
+
+creautente
+confermacredenziali
+datiutentecompleti (datibase + livelloaccesso)
+datiutente (datibase)
+
+mongo struttura livelliaccesso
+id
+utente_id
+livellonome
+azionePermesso
+
+
+mongo struttura utente base
+
+id
+applicazione_id
+username
+nome
+cognome
+password <-- criptata
+email
+datacreazione
+ultimoaccesso
+attivo (si-no-sospeso-ferie-attesapprovazione)
+
+passwordChange
+	richiesta (T/F)
+        datascadenzaRichiesta
+        vecchiaPassword
+        nuovaPassword
+        passwordChangeToken
+
