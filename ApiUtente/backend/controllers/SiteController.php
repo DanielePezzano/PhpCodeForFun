@@ -6,6 +6,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\features\commonFeatures
 
 /**
  * Site controller
@@ -18,27 +19,34 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
+            'access' => $this->SetAccessBehavior(),
+            'verbs' => $this->getVerbs(),
+        ];
+    }
+
+    private function SetAccessBehavior(){
+        return [
                 'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['login', 'error'],
-                        'allow' => true,
-                    ],
-                    [
-                        'actions' => ['logout', 'index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
+                'rules' => $this->GetRules(),
+            ];
+    }
+
+    private function GetRules(){
+        return [
+                    $this->SetRules(['login', 'error'],true),
+                    $this->SetRules(['logout', 'index'],true,['@']),
+                ];
+    }
+
+    
+
+    private function GetVerbs(){
+        return [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
                 ],
-            ],
-        ];
+            ];
     }
 
     /**
