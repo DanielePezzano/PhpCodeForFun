@@ -17,8 +17,6 @@ namespace EncriptionLib\Client;
 use EncriptionLib\Concrete\EncryptEAS;
 use EncriptionLib\Concrete\EncryptNonEas;
 use EncriptionLib\Concrete\HashMe;
-use EncriptionLib\Interfaces\IOneWayEncrypt;
-use EncriptionLib\Interfaces\IReverseEncrypt;
 
 class EncryptClient {
 
@@ -32,8 +30,18 @@ class EncryptClient {
     private $key;
     private $concreteEncryptor;
 
-    public function __construct($type) {
-        
+    public function __construct($type,$_chiper,$_iv = null, $_key = null) {
+        $this->chiper = $_chiper;
+        $this->key = $_key;
+        $this->iv = $_iv;
+        $this->CheckRequestedEncryptorType($type);
+    }
+    
+    private function CheckRequestedEncryptorType($type){
+        if ($type!=self::AES && $type!=self::AES && $type!=self::General){
+            throw new Exception(self::NotValidEncryption, "500", "");
+        }
+        $this->concreteEncryptor = $this->InitEncryptor()[$type];
     }
 
     private function InitEncryptor() {
@@ -43,5 +51,6 @@ class EncryptClient {
             [self::Hash]=>  HashMe::CreateHash($this->chiper)
         ];
     }
+    
 
 }
