@@ -11,6 +11,8 @@
  *
  * @author pezzanod
  */
+namespace EncriptionLib\Concrete;
+
 use EncriptionLib\Interfaces\IOneWayEncrypt;
 use EncriptionLib\Interfaces\IReverseEncrypt;
 use Exception;
@@ -44,8 +46,6 @@ class EncryptNonEas implements IOneWayEncrypt, IReverseEncrypt {
         $ciphertext_raw = substr($coded64, $ivlen+$sha2len);
         $calcmac = hash_hmac(self::patchMethod, $ciphertext_raw, $this->key, $as_binary=true);
         $original_plaintext = openssl_decrypt($ciphertext_raw, $this->chiper, $this->key, $options=OPENSSL_RAW_DATA, $this->iv);
-        
-        
         return (hash_equals($hmac, $calcmac)) ? $original_plaintext : false;
     }
     

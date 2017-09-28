@@ -12,6 +12,8 @@
  * @author pezzanod
  */
 
+namespace EncriptionLib\Concrete;
+
 use EncriptionLib\Interfaces\IOneWayEncrypt;
 use Exception;
 
@@ -26,6 +28,10 @@ class HashMe implements IOneWayEncrypt{
         if (!in_array($_hashMetod, hash_algos())){
             throw new Exception(self::NotValidEncryption, "500", "");
         }
+    }
+    
+    public static function CreateHash($_hashMetod){
+        return new HashMe($_hashMetod);
     }
     
     public function Encrypt($toEncrypt) {
