@@ -32,6 +32,10 @@ class EncryptNonEas implements IOneWayEncrypt, IReverseEncrypt {
             throw new Exception(self::NotValidEncryption, "500", "");
         }
     }
+    
+     public static function CreateEncriptor($_chiper,$_iv,$_key){
+        return new EncryptNonEas($_chiper,$_iv,$_key);
+    }
 
     public function Decrypt($encrypted) {
         $coded64 = base64_decode($encrypted);

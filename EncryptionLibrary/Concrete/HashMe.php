@@ -11,6 +11,25 @@
  *
  * @author pezzanod
  */
-class HashMe {
-    //put your code here
+
+use EncriptionLib\Interfaces\IOneWayEncrypt;
+use Exception;
+
+class HashMe implements IOneWayEncrypt{
+    
+    private $hashMetod;
+
+    const NotValidEncryption = "This Method is not Valid";
+    
+    public function __construct($_hashMetod) {
+        $this->hashMetod = $_hashMetod;
+        if (!in_array($_hashMetod, hash_algos())){
+            throw new Exception(self::NotValidEncryption, "500", "");
+        }
+    }
+    
+    public function Encrypt($toEncrypt) {
+        return hash($this->hashMetod, $toEncrypt);
+    }
+//put your code here
 }
