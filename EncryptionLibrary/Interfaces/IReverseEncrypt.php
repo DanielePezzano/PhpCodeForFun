@@ -1,5 +1,5 @@
 <?php
-namespace Crypto\Interfaces;
+namespace EncriptionLib\Interfaces;
 
 interface IReverseEncrypt extends IOneWayEncrypt {
     public function Decrypt($salt, $encrypted);
