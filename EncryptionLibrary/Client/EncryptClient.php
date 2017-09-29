@@ -28,17 +28,19 @@ class EncryptClient {
     private $chiper;
     private $iv;
     private $key;
+    private $data;
     private $concreteEncryptor;
 
-    public function __construct($type,$_chiper,$_iv = null, $_key = null) {
+    public function __construct($_data,$type,$_chiper,$_iv = null, $_key = null) {
         $this->chiper = $_chiper;
         $this->key = $_key;
         $this->iv = $_iv;
+        $this->data = $_data;
         $this->CheckRequestedEncryptorType($type);
     }
     
     private function CheckRequestedEncryptorType($type){
-        if ($type!=self::AES && $type!=self::AES && $type!=self::General){
+        if ($type!=self::AES && $type!=self::Hash && $type!=self::General){
             throw new Exception(self::NotValidEncryption, "500", "");
         }
         $this->concreteEncryptor = $this->InitEncryptor()[$type];
@@ -51,6 +53,15 @@ class EncryptClient {
             [self::Hash]=>  HashMe::CreateHash($this->chiper)
         ];
     }
+    public function CryptMyData(){
+        return $this->concreteEncryptor->Encrypt($this->data);
+    }
     
+    public function DecryptMyData(){
+        return $this->concreteEncryptor->Decrypt($this->data);
+    }
 
+    public static function CreateClient($_data,$type,$_chiper,$_iv = null, $_key = null){
+        return new EncryptClient($_data, $type, $_chiper, $_iv, $_key);
+    }
 }
