@@ -14,7 +14,6 @@ class EncryptTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        require_once 'bootstrap.php';
     }
 
     protected function _after()
