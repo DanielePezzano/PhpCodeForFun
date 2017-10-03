@@ -13,6 +13,9 @@
  */
 namespace EncriptionLib\Concrete;
 
+require_once 'Interfaces/IOneWayEncrypt.php';
+require_once 'Interfaces/IReverseEncrypt.php';
+
 use EncriptionLib\Interfaces\IOneWayEncrypt;
 use EncriptionLib\Interfaces\IReverseEncrypt;
 use Exception;
@@ -31,7 +34,7 @@ class EncryptEAS implements IOneWayEncrypt, IReverseEncrypt{
         $this->iv = $_iv;
         $this->key = $_key;
         if (!in_array($this->chiper, openssl_get_cipher_methods())) {
-            throw new Exception(self::NotValidEncryption, "500", "");
+            throw new Exception(self::NotValidEncryption);
         }
     }
     

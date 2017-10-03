@@ -36,7 +36,12 @@ class KeyGenerator {
 
     private function GenerateChiperKey() {
         $ivlen = openssl_cipher_iv_length($this->chiper);
-        return openssl_random_pseudo_bytes($ivlen);
+        $generatedKey = openssl_random_pseudo_bytes($ivlen);
+        return  ($this->IsKeyValid($generatedKey))? $generatedKey : $this->GenerateStandardKey();
+    }
+    
+    private function IsKeyValid($generatedKey){
+        return ($generatedKey!=null && $generatedKey!="" && $generatedKey!=0);
     }
 
     public static function CreateKeyGenerator($_chiper = null) {

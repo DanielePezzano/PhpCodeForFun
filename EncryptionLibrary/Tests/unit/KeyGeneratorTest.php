@@ -17,9 +17,18 @@ class KeyGeneratorTest extends \Codeception\Test\Unit
     }
 
     // tests
-    public function testSomeFeature()
+    public function testFileExists()
     {
-        $this->tester->assertFileExists('KeyGenerator.php');
+            $this->tester->assertFileExists('KeyGenerator.php');        
+    }
+    
+    public function testDefaultKeyGeneration(){
         $this->tester->assertTrue(KeyGenerator::CreateKeyGenerator()->GenerateKey()!="");        
+    }
+    
+    public function testKeyGenerationForAllChiper(){
+        foreach (openssl_get_cipher_methods() as $method) {
+            $this->tester->assertTrue(KeyGenerator::CreateKeyGenerator($method)->GenerateKey()!="");
+        }
     }
 }

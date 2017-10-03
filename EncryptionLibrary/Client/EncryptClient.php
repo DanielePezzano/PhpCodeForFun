@@ -14,6 +14,10 @@
 
 namespace EncriptionLib\Client;
 
+require_once 'Concrete/EncryptEAS.php';
+require_once 'Concrete/EncryptNonEAS.php';
+require_once 'Concrete/HashMe.php';
+
 use EncriptionLib\Concrete\EncryptEAS;
 use EncriptionLib\Concrete\EncryptNonEas;
 use EncriptionLib\Concrete\HashMe;
@@ -41,17 +45,23 @@ class EncryptClient {
     
     private function CheckRequestedEncryptorType($type){
         if ($type!=self::AES && $type!=self::Hash && $type!=self::General){
-            throw new Exception(self::NotValidEncryption, "500", "");
+            throw new Exception(self::NotValidEncryption);
         }
-        $this->concreteEncryptor = $this->InitEncryptor()[$type];
+       $this->InitEncryptor($type);
     }
 
-    private function InitEncryptor() {
-        return [
-            [self::AES] => EncryptEAS::CreateEncriptor($this->chiper, $this->iv, $this->key),
-            [self::General]=>  EncryptNonEas::CreateEncriptor($this->chiper, $this->iv, $this->key),
-            [self::Hash]=>  HashMe::CreateHash($this->chiper)
-        ];
+    private function InitEncryptor($type) {
+        switch ($type) {
+            case self::Hash:
+                $this->concreteEncryptor = HashMe::CreateHash($this->chiper);
+                break;
+            case self::AES:
+                $this->concreteEncryptor =EncryptEAS::CreateEncriptor($this->chiper, $this->iv, $this->key);
+                break;;
+            case self::General:
+                $this->concreteEncryptor =EncryptNonEas::CreateEncriptor($this->chiper, $this->iv, $this->key);
+                break;
+        }
     }
     public function CryptMyData(){
         return $this->concreteEncryptor->Encrypt($this->data);

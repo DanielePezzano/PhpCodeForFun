@@ -14,6 +14,8 @@
 
 namespace EncriptionLib\Concrete;
 
+require_once 'Interfaces/IOneWayEncrypt.php';
+
 use EncriptionLib\Interfaces\IOneWayEncrypt;
 use Exception;
 
@@ -26,7 +28,7 @@ class HashMe implements IOneWayEncrypt{
     public function __construct($_hashMetod) {
         $this->hashMetod = $_hashMetod;
         if (!in_array($_hashMetod, hash_algos())){
-            throw new Exception(self::NotValidEncryption, "500", "");
+            throw new Exception(self::NotValidEncryption);
         }
     }
     
