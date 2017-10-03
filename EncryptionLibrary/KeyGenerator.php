@@ -11,16 +11,36 @@
  *
  * @author daniele
  */
+
+namespace EncriptionLib;
+
 class KeyGenerator {
+
     //put your code here
     private $chiper;
-    
+
     public function __construct($_chiper) {
         $this->chiper = $_chiper;
     }
-    
-    public function GenerateKey(){
+
+    public function GenerateKey() {
+        return
+                ($this->chiper != NULL && $this->chiper != "") ?
+                $this->GenerateChiperKey() :
+                $this->GenerateStandardKey();
+    }
+
+    private function GenerateStandardKey() {
+        return openssl_random_pseudo_bytes(32);
+    }
+
+    private function GenerateChiperKey() {
         $ivlen = openssl_cipher_iv_length($this->chiper);
         return openssl_random_pseudo_bytes($ivlen);
     }
+
+    public static function CreateKeyGenerator($_chiper = null) {
+        return new KeyGenerator($_chiper);
+    }
+
 }
