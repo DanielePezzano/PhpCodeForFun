@@ -50,19 +50,19 @@ class EncryptNonEas implements IOneWayEncrypt, IReverseEncrypt {
         $hmac = substr($coded64, $ivlen, $sha2len = 32);
         $ciphertext_raw = substr($coded64, $ivlen + $sha2len);
         $calcmac = hash_hmac(self::patchMethod, $ciphertext_raw, $this->key, $as_binary = true);
-        $original_plaintext = openssl_decrypt($ciphertext_raw, $this->chiper, $this->key, $options = OPENSSL_RAW_DATA, $this->iv);
+        $original_plaintext = ($this->tag != null) ?
+                openssl_decrypt($ciphertext_raw, $this->chiper, $this->key, $options = OPENSSL_RAW_DATA, $this->iv, $this->tag) :
+                openssl_decrypt($ciphertext_raw, $this->chiper, $this->key, $options = OPENSSL_RAW_DATA, $this->iv);
         return (hash_equals($hmac, $calcmac)) ? $original_plaintext : false;
     }
 
     public function Encrypt($toEncrypt) {
-        try {
-            $ciphertext_raw = openssl_encrypt($toEncrypt, $this->chiper, $this->key, $options = OPENSSL_RAW_DATA, $this->iv, $this->tag);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-            die();
-        }
-
+        $ciphertext_raw = ($this->tag != null) ?
+                openssl_encrypt($toEncrypt, $this->chiper, $this->key, $options = OPENSSL_RAW_DATA, $this->iv, $this->tag) :
+                openssl_encrypt($toEncrypt, $this->chiper, $this->key, $options = OPENSSL_RAW_DATA, $this->iv);
         $hmac = hash_hmac(self::patchMethod, $ciphertext_raw, $this->key, $as_binary = true);
         return base64_encode($this->iv . $hmac . $ciphertext_raw);
     }
+
+//put your code here
 }
