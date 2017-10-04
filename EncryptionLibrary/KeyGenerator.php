@@ -24,26 +24,18 @@ class KeyGenerator {
     }
 
     public function GenerateKey() {
-        return
-                ($this->chiper != NULL && $this->chiper != "") ?
-                $this->GenerateChiperKey() :
-                $this->GenerateStandardKey();
+        return $this->GenerateStandardKey();                
+    }
+    
+    public function GenerateIV(){
+        $IVlenght = openssl_cipher_iv_length($this->chiper);
+        return openssl_random_pseudo_bytes($IVlenght);
     }
 
     private function GenerateStandardKey() {
-        return openssl_random_pseudo_bytes(32);
-    }
-
-    private function GenerateChiperKey() {
-        $ivlen = openssl_cipher_iv_length($this->chiper);
-        $generatedKey = openssl_random_pseudo_bytes($ivlen);
-        return  ($this->IsKeyValid($generatedKey))? $generatedKey : $this->GenerateStandardKey();
+        return Concrete\HashMe::CreateHash('sha256')->Encrypt(openssl_random_pseudo_bytes(32));
     }
     
-    private function IsKeyValid($generatedKey){
-        return ($generatedKey!=null && $generatedKey!="" && $generatedKey!=0);
-    }
-
     public static function CreateKeyGenerator($_chiper = null) {
         return new KeyGenerator($_chiper);
     }

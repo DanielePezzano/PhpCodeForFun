@@ -33,13 +33,15 @@ class EncryptClient {
     private $iv;
     private $key;
     private $data;
+    private $tag;
     private $concreteEncryptor;
 
-    public function __construct($_data,$type,$_chiper,$_iv = null, $_key = null) {
+    public function __construct($_data,$type,$_chiper,$_iv = null, $_key = null,$_tag=null) {
         $this->chiper = $_chiper;
         $this->key = $_key;
         $this->iv = $_iv;
         $this->data = $_data;
+        $this->tag = $_tag;
         $this->CheckRequestedEncryptorType($type);
     }
     
@@ -56,10 +58,10 @@ class EncryptClient {
                 $this->concreteEncryptor = HashMe::CreateHash($this->chiper);
                 break;
             case self::AES:
-                $this->concreteEncryptor =EncryptEAS::CreateEncriptor($this->chiper, $this->iv, $this->key);
+                $this->concreteEncryptor =EncryptEAS::CreateEncriptor($this->chiper, $this->iv, $this->key,$this->tag);
                 break;;
             case self::General:
-                $this->concreteEncryptor =EncryptNonEas::CreateEncriptor($this->chiper, $this->iv, $this->key);
+                $this->concreteEncryptor =EncryptNonEas::CreateEncriptor($this->chiper, $this->iv, $this->key,$this->tag);
                 break;
         }
     }
@@ -67,8 +69,9 @@ class EncryptClient {
         return $this->concreteEncryptor->Encrypt($this->data);
     }
     
-    public function DecryptMyData(){
-        return $this->concreteEncryptor->Decrypt($this->data);
+    public function DecryptMyData($data=null){
+        $toDecrypt = ($data==null) ? $this->data : $data;
+        return $this->concreteEncryptor->Decrypt($toDecrypt);
     }
 
     public static function CreateClient($_data,$type,$_chiper,$_iv = null, $_key = null){

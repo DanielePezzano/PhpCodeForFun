@@ -39,5 +39,8 @@ class HashMe implements IOneWayEncrypt{
     public function Encrypt($toEncrypt) {
         return hash($this->hashMetod, $toEncrypt);
     }
-//put your code here
+    
+    public static function CreateHasher($_hashMethod){
+        return new HashMe($_hashMethod);
+    }
 }

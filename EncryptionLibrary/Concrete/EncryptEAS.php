@@ -18,28 +18,29 @@ require_once 'Interfaces/IReverseEncrypt.php';
 
 use EncriptionLib\Interfaces\IOneWayEncrypt;
 use EncriptionLib\Interfaces\IReverseEncrypt;
-use Exception;
 
 class EncryptEAS implements IOneWayEncrypt, IReverseEncrypt{
     
     private $chiper;
     private $iv;
     private $key;
+    private $tag;
 
     const NotValidEncryption = "This Method is not Valid";
     const patchMethod = 'sha256';
     
-    public function __construct($_chiper, $_iv, $_key) {
+    public function __construct($_chiper, $_iv, $_key,$_tag) {
         $this->chiper = $_chiper;
         $this->iv = $_iv;
         $this->key = $_key;
+        $this->tag = $_tag;
         if (!in_array($this->chiper, openssl_get_cipher_methods())) {
             throw new Exception(self::NotValidEncryption);
         }
     }
     
-     public static function CreateEncriptor($_chiper,$_iv,$_key){
-        return new EncryptEAS($_chiper,$_iv,$_key);
+     public static function CreateEncriptor($_chiper,$_iv,$_key,$_tag){
+        return new EncryptEAS($_chiper,$_iv,$_key,$_tag);
     }
     
     public function Decrypt($encrypted) {
@@ -47,7 +48,7 @@ class EncryptEAS implements IOneWayEncrypt, IReverseEncrypt{
     }
 
     public function Encrypt($toEncrypt) {
-        return openssl_encrypt($toEncrypt, $this->chiper, $this->key, $options, $this->iv);
+        return openssl_encrypt($toEncrypt, $this->chiper, $this->key, $options, $this->iv,$this->tag);
     }
 
 //put your code here
