@@ -74,7 +74,7 @@ class EncryptClient {
         return $this->concreteEncryptor->Decrypt($toDecrypt);
     }
 
-    public static function CreateClient($_data,$type,$_chiper,$_iv = null, $_key = null){
-        return new EncryptClient($_data, $type, $_chiper, $_iv, $_key);
+    public static function CreateClient($_data,$type,$_chiper,$_iv = null, $_key = null,$_tag=null){
+        return new EncryptClient($_data, $type, $_chiper, $_iv, $_key,$_tag);
     }
 }
