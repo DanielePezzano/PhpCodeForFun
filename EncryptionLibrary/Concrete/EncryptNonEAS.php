@@ -19,6 +19,7 @@ require_once 'Interfaces/IReverseEncrypt.php';
 
 use EncriptionLib\Interfaces\IOneWayEncrypt;
 use EncriptionLib\Interfaces\IReverseEncrypt;
+use Exception;
 
 class EncryptNonEas implements IOneWayEncrypt, IReverseEncrypt {
 
@@ -27,7 +28,22 @@ class EncryptNonEas implements IOneWayEncrypt, IReverseEncrypt {
     private $key;
     private $tag;
 
+    const ChiperWithNeededTag = [
+        'id-aes256-ccm',
+        'id-aes256-gcm',
+        'id-aes192-ccm',
+        'id-aes192-gcm',
+        'aes-128-ccm',
+        'aes-128-gcm',
+        'aes-192-ccm',
+        'aes-192-gcm',
+        'aes-256-ccm',
+        'aes-256-gcm',
+        'id-aes128-ccm',
+        'id-aes128-gcm'];
+    
     const NotValidEncryption = "This Method is not Valid";
+    const TagNeededForChiper = "The Tag Should Be Provided For this Chiper";
     const patchMethod = 'sha256';
 
     public function __construct($_chiper, $_iv, $_key, $_tag) {
@@ -37,6 +53,10 @@ class EncryptNonEas implements IOneWayEncrypt, IReverseEncrypt {
         $this->tag = $_tag;
         if (!in_array($this->chiper, openssl_get_cipher_methods())) {
             throw new Exception(self::NotValidEncryption);
+        }
+        
+        if ($this->IsTagNeeded() && !$this->IsTagProvided()){
+            throw new Exception(self::TagNeededForChiper);
         }
     }
 
@@ -62,6 +82,14 @@ class EncryptNonEas implements IOneWayEncrypt, IReverseEncrypt {
                 openssl_encrypt($toEncrypt, $this->chiper, $this->key, $options = OPENSSL_RAW_DATA, $this->iv);
         $hmac = hash_hmac(self::patchMethod, $ciphertext_raw, $this->key, $as_binary = true);
         return base64_encode($this->iv . $hmac . $ciphertext_raw);
+    }
+
+    private function IsTagProvided() {
+        return (is_null($this->tag)) ? false : true;
+    }
+
+    private function IsTagNeeded() {
+        return (in_array(strtolower($this->chiper), self::ChiperWithNeededTag)) ? true : false;
     }
 
 //put your code here

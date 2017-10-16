@@ -21,6 +21,7 @@ require_once 'Concrete/HashMe.php';
 use EncriptionLib\Concrete\EncryptEAS;
 use EncriptionLib\Concrete\EncryptNonEas;
 use EncriptionLib\Concrete\HashMe;
+use Exception;
 
 class EncryptClient {
 

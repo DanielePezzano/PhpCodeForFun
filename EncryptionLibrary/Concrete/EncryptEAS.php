@@ -18,6 +18,7 @@ require_once 'Interfaces/IReverseEncrypt.php';
 
 use EncriptionLib\Interfaces\IOneWayEncrypt;
 use EncriptionLib\Interfaces\IReverseEncrypt;
+use Exception;
 
 class EncryptEAS implements IOneWayEncrypt, IReverseEncrypt{
     

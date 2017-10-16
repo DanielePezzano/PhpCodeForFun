@@ -6,6 +6,7 @@ use EncriptionLib\KeyGenerator;
 require_once('Client/EncryptClient.php');
 
 class NonAesEncryptionTest extends \Codeception\Test\Unit {
+
     protected $tester;
     protected $testoOriginale = "mio testo da criptare";
 
@@ -406,6 +407,18 @@ class NonAesEncryptionTest extends \Codeception\Test\Unit {
         $this->DoTestWithTag("id-aes128-GCM");
     }
 
+    public function testThisShouldRaiseException() {
+
+        $this->tester->expectException(new Exception(EncriptionLib\Concrete\EncryptNonEas::TagNeededForChiper), function() {
+            $_chiper = "id-aes128-GCM";
+            $keyGen = KeyGenerator::CreateKeyGenerator($_chiper);
+            $_key = $keyGen->GenerateKey();
+            $_iv = $keyGen->GenerateIV();
+            EncryptClient::CreateClient($this->testoOriginale, $_chiper, $_iv, $_key);
+        }
+        );
+    }
+
     private function DoTesting($_chiper) {
         $keyGen = KeyGenerator::CreateKeyGenerator($_chiper);
         $_key = $keyGen->GenerateKey();
@@ -420,13 +433,12 @@ class NonAesEncryptionTest extends \Codeception\Test\Unit {
         $_key = $keyGen->GenerateKey();
         $_iv = $keyGen->GenerateIV();
         $tag = EncryptClient::CreateClient('MioTestoPerTag', 'sha256')->CryptMyData();
-        $cryptor = EncryptClient::CreateClient($this->testoOriginale,$_chiper, $_iv, $_key, $tag);
+        $cryptor = EncryptClient::CreateClient($this->testoOriginale, $_chiper, $_iv, $_key, $tag);
         $this->tester->assertNotNull($cryptor, "");
         $this->DecryptAndCompare($cryptor);
-       
     }
-    
-    private function DecryptAndCompare($cryptor){
+
+    private function DecryptAndCompare($cryptor) {
         $this->tester->assertTrue($cryptor->IsThisAnEncryptionAlgol());
         $crypted = $cryptor->CryptMyData();
         $this->tester->assertNotEmpty($crypted);
