@@ -5,7 +5,7 @@ use EncriptionLib\KeyGenerator;
 
 require_once('Client/EncryptClient.php');
 
-class NonAesEncryptionTest extends \Codeception\Test\Unit {
+class EncryptionTest extends \Codeception\Test\Unit {
 
     protected $tester;
     protected $testoOriginale = "mio testo da criptare";
@@ -409,7 +409,7 @@ class NonAesEncryptionTest extends \Codeception\Test\Unit {
 
     public function testThisShouldRaiseException() {
 
-        $this->tester->expectException(new Exception(EncriptionLib\Concrete\EncryptNonEas::TagNeededForChiper), function() {
+        $this->tester->expectException(new Exception(EncriptionLib\Concrete\Encrypter::TagNeededForChiper), function() {
             $_chiper = "id-aes128-GCM";
             $keyGen = KeyGenerator::CreateKeyGenerator($_chiper);
             $_key = $keyGen->GenerateKey();

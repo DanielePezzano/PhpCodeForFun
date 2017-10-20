@@ -23,7 +23,7 @@ class HashMe implements IOneWayEncrypt{
     
     private $hashMetod;
 
-    const NotValidEncryption = "This Method is not Valid";
+    const NotValidEncryption = "Not Supported Hash Method";
     
     public function __construct($_hashMetod) {
         $this->hashMetod = $_hashMetod;

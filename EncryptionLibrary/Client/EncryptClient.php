@@ -14,19 +14,14 @@
 
 namespace EncriptionLib\Client;
 
-require_once 'Concrete/EncryptEAS.php';
-require_once 'Concrete/EncryptNonEAS.php';
+require_once 'Concrete/Encrypter.php';
 require_once 'Concrete/HashMe.php';
 
-use EncriptionLib\Concrete\EncryptEAS;
-use EncriptionLib\Concrete\EncryptNonEas;
+use EncriptionLib\Concrete\Encrypter;
 use EncriptionLib\Concrete\HashMe;
 use Exception;
 
 class EncryptClient {
-
-    const NotValidEncryption = "This type is not Valid";
-
     private $chiper;
     private $iv;
     private $key;
@@ -47,7 +42,7 @@ class EncryptClient {
     
     private function InitEncryptor() {
         if ($this->isEncryption) {
-            $this->concreteEncryptor = EncryptNonEas::CreateEncriptor($this->chiper, $this->iv, $this->key, $this->tag);
+            $this->concreteEncryptor = Encrypter::CreateEncriptor($this->chiper, $this->iv, $this->key, $this->tag);
         } else {
             $this->concreteEncryptor = HashMe::CreateHash($this->chiper);
         }
@@ -56,7 +51,7 @@ class EncryptClient {
     private function CheckChiperType(){
         $this->isEncryption = $this->IsAnEncryptionAlgoritm();
         if (!$this->isEncryption && !$this->IsAnHashAlgoritm()){
-             throw new Exception(self::NotValidEncryption);
+             throw new Exception(HashMe::NotValidEncryption);
         }
     }
     
@@ -65,7 +60,7 @@ class EncryptClient {
     }
     
     private function IsAnEncryptionAlgoritm(){
-        return in_array($this->chiper, openssl_get_cipher_methods());
+        return in_array($this->chiper, Encrypter::TestedChipres);
     }
     
     public function CryptMyData(){
@@ -76,12 +71,20 @@ class EncryptClient {
         $toDecrypt = ($data==null) ? $this->data : $data;
         return $this->concreteEncryptor->Decrypt($toDecrypt);
     }
-
-    public static function CreateClient($_data,$_chiper,$_iv = null, $_key = null,$_tag=null){
-        return new EncryptClient($_data, $_chiper, $_iv, $_key,$_tag);
-    }
     
     public function IsThisAnEncryptionAlgol(){
         return $this->IsAnEncryptionAlgoritm();
+    }
+    
+     public static function CreateClient($_data,$_chiper,$_iv = null, $_key = null,$_tag=null){
+        return new EncryptClient($_data, $_chiper, $_iv, $_key,$_tag);
+    }
+    
+    public static function GetSupportedEncryptionAlgos(){
+        return Encrypter::TestedChipres;
+    }
+    
+    public static function GetSupportedHasingAlogs(){
+        return hash_algos();
     }
 }
