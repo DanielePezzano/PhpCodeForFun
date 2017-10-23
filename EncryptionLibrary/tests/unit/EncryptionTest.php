@@ -447,4 +447,7 @@ class EncryptionTest extends \Codeception\Test\Unit {
         $this->tester->assertEquals($decrypted, $this->testoOriginale, $decrypted);
     }
 
+    public function testGetSupportedEncryptionAlgos(){
+        $this->tester->assertTrue(is_array(EncryptClient::GetSupportedEncryptionAlgos()));
+    }
 }

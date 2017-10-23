@@ -4,19 +4,18 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe
-{
-    public static $files = array (
+class ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe {
+
+    public static $files = array(
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
     );
-
-    public static $prefixLengthsPsr4 = array (
-        'y' => 
-        array (
+    public static $prefixLengthsPsr4 = array(
+        'y' =>
+        array(
             'yii\\swiftmailer\\' => 16,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
@@ -25,20 +24,20 @@ class ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
-        'p' => 
-        array (
+        'p' =>
+        array(
             'phpDocumentor\\Reflection\\' => 25,
         ),
-        'c' => 
-        array (
+        'c' =>
+        array(
             'cebe\\markdown\\' => 14,
         ),
-        'W' => 
-        array (
+        'W' =>
+        array(
             'Webmozart\\Assert\\' => 17,
         ),
-        'S' => 
-        array (
+        'S' =>
+        array(
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\Finder\\' => 25,
@@ -50,180 +49,183 @@ class ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe
             'Symfony\\Component\\BrowserKit\\' => 29,
             'Stecman\\Component\\Symfony\\Console\\BashCompletion\\' => 49,
         ),
-        'P' => 
-        array (
+        'P' =>
+        array(
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
         ),
-        'G' => 
-        array (
+        'G' =>
+        array(
             'GuzzleHttp\\Psr7\\' => 16,
         ),
-        'F' => 
-        array (
+        'F' =>
+        array(
             'Faker\\' => 6,
         ),
-        'D' => 
-        array (
+        'D' =>
+        array(
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
         ),
-        'C' => 
-        array (
+        'C' =>
+        array(
             'Codeception\\Extension\\' => 22,
             'Codeception\\' => 12,
         ),
     );
-
-    public static $prefixDirsPsr4 = array (
-        'yii\\swiftmailer\\' => 
-        array (
+    public static $prefixDirsPsr4 = array(
+        'yii\\swiftmailer\\' =>
+        array(
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
         ),
-        'yii\\gii\\' => 
-        array (
+        'yii\\gii\\' =>
+        array(
             0 => __DIR__ . '/..' . '/yiisoft/yii2-gii',
         ),
-        'yii\\faker\\' => 
-        array (
+        'yii\\faker\\' =>
+        array(
             0 => __DIR__ . '/..' . '/yiisoft/yii2-faker',
         ),
-        'yii\\debug\\' => 
-        array (
+        'yii\\debug\\' =>
+        array(
             0 => __DIR__ . '/..' . '/yiisoft/yii2-debug',
         ),
-        'yii\\composer\\' => 
-        array (
+        'yii\\composer\\' =>
+        array(
             0 => __DIR__ . '/..' . '/yiisoft/yii2-composer',
         ),
-        'yii\\bootstrap\\' => 
-        array (
+        'yii\\bootstrap\\' =>
+        array(
             0 => __DIR__ . '/..' . '/yiisoft/yii2-bootstrap',
         ),
-        'yii\\' => 
-        array (
+        'yii\\' =>
+        array(
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
-        'phpDocumentor\\Reflection\\' => 
-        array (
+        'phpDocumentor\\Reflection\\' =>
+        array(
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
-        'cebe\\markdown\\' => 
-        array (
+        'cebe\\markdown\\' =>
+        array(
             0 => __DIR__ . '/..' . '/cebe/markdown',
         ),
-        'Webmozart\\Assert\\' => 
-        array (
+        'Webmozart\\Assert\\' =>
+        array(
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
-        'Symfony\\Polyfill\\Mbstring\\' => 
-        array (
+        'Symfony\\Polyfill\\Mbstring\\' =>
+        array(
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
-        'Symfony\\Component\\Yaml\\' => 
-        array (
+        'Symfony\\Component\\Yaml\\' =>
+        array(
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
-        'Symfony\\Component\\Finder\\' => 
-        array (
+        'Symfony\\Component\\Finder\\' =>
+        array(
             0 => __DIR__ . '/..' . '/symfony/finder',
         ),
-        'Symfony\\Component\\EventDispatcher\\' => 
-        array (
+        'Symfony\\Component\\EventDispatcher\\' =>
+        array(
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
         ),
-        'Symfony\\Component\\DomCrawler\\' => 
-        array (
+        'Symfony\\Component\\DomCrawler\\' =>
+        array(
             0 => __DIR__ . '/..' . '/symfony/dom-crawler',
         ),
-        'Symfony\\Component\\Debug\\' => 
-        array (
+        'Symfony\\Component\\Debug\\' =>
+        array(
             0 => __DIR__ . '/..' . '/symfony/debug',
         ),
-        'Symfony\\Component\\CssSelector\\' => 
-        array (
+        'Symfony\\Component\\CssSelector\\' =>
+        array(
             0 => __DIR__ . '/..' . '/symfony/css-selector',
         ),
-        'Symfony\\Component\\Console\\' => 
-        array (
+        'Symfony\\Component\\Console\\' =>
+        array(
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-        'Symfony\\Component\\BrowserKit\\' => 
-        array (
+        'Symfony\\Component\\BrowserKit\\' =>
+        array(
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
         ),
-        'Stecman\\Component\\Symfony\\Console\\BashCompletion\\' => 
-        array (
+        'Stecman\\Component\\Symfony\\Console\\BashCompletion\\' =>
+        array(
             0 => __DIR__ . '/..' . '/stecman/symfony-console-completion/src',
         ),
-        'Psr\\Log\\' => 
-        array (
+        'Psr\\Log\\' =>
+        array(
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
-        'Psr\\Http\\Message\\' => 
-        array (
+        'Psr\\Http\\Message\\' =>
+        array(
             0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
-        'GuzzleHttp\\Psr7\\' => 
-        array (
+        'GuzzleHttp\\Psr7\\' =>
+        array(
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
-        'Faker\\' => 
-        array (
+        'Faker\\' =>
+        array(
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
         ),
-        'Doctrine\\Instantiator\\' => 
-        array (
+        'Doctrine\\Instantiator\\' =>
+        array(
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
         ),
-        'DeepCopy\\' => 
-        array (
+        'DeepCopy\\' =>
+        array(
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
-        'Codeception\\Extension\\' => 
-        array (
+        'Codeception\\Extension\\' =>
+        array(
             0 => __DIR__ . '/..' . '/codeception/base/ext',
         ),
-        'Codeception\\' => 
-        array (
+        'Codeception\\' =>
+        array(
             0 => __DIR__ . '/..' . '/codeception/base/src/Codeception',
         ),
     );
-
-    public static $prefixesPsr0 = array (
-        'P' => 
-        array (
-            'Prophecy\\' => 
-            array (
+    public static $prefixesPsr0 = array(
+        'P' =>
+        array(
+            'Prophecy\\' =>
+            array(
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
             ),
         ),
-        'H' => 
-        array (
-            'HTMLPurifier' => 
-            array (
+        'H' =>
+        array(
+            'HTMLPurifier' =>
+            array(
                 0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',
             ),
         ),
-        'D' => 
-        array (
-            'Diff' => 
-            array (
+        'D' =>
+        array(
+            'Diff' =>
+            array(
                 0 => __DIR__ . '/..' . '/phpspec/php-diff/lib',
             ),
         ),
-        'B' => 
-        array (
-            'Behat\\Gherkin' => 
-            array (
+        'B' =>
+        array(
+            'Behat\\Gherkin' =>
+            array(
                 0 => __DIR__ . '/..' . '/behat/gherkin/src',
             ),
         ),
     );
-
-    public static $classMap = array (
+    public static $classMap = array(
+        'EncryptionLibrary_Client' => __DIR__ . '/..' . '/EncryptionLibrary/Client/EncryptClient.php',
+        'EncryptionLibrary_ConcreteEncrypter' => __DIR__ . '/..' . '/EncryptionLibrary/Concrete/Encrypter.php',
+        'EncryptionLibrary_ConcreteHash' => __DIR__ . '/..' . '/EncryptionLibrary/Concrete/HashMe.php',
+        'EncryptionLibrary_InterfaceCompare' => __DIR__ . '/..' . '/EncryptionLibrary/Interfaces/ICompare.php',
+        'EncryptionLibrary_InterfaceOneWay' => __DIR__ . '/..' . '/EncryptionLibrary/Interfaces/IOneWayEncrypt.php',
+        'EncryptionLibrary_InterfaceReverse' => __DIR__ . '/..' . '/EncryptionLibrary/Interfaces/IReverseEncrypt.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
@@ -688,14 +690,13 @@ class ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
     );
 
-    public static function getInitializer(ClassLoader $loader)
-    {
+    public static function getInitializer(ClassLoader $loader) {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe::$classMap;
-
-        }, null, ClassLoader::class);
+                    $loader->prefixLengthsPsr4 = ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe::$prefixLengthsPsr4;
+                    $loader->prefixDirsPsr4 = ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe::$prefixDirsPsr4;
+                    $loader->prefixesPsr0 = ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe::$prefixesPsr0;
+                    $loader->classMap = ComposerStaticInit7e2bca6a7ad2fb4481bca401a2f2aefe::$classMap;
+                }, null, ClassLoader::class);
     }
+
 }

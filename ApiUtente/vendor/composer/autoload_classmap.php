@@ -6,6 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'EncryptionLibrary_Client'=>$vendorDir.'/EncryptionLibrary/Client/EncryptClient.php',
+    'EncryptionLibrary_ConcreteEncrypter'=>$vendorDir.'/EncryptionLibrary/Concrete/Encrypter.php',
+    'EncryptionLibrary_ConcreteHash'=>$vendorDir.'/EncryptionLibrary/Concrete/HashMe.php',
+    'EncryptionLibrary_InterfaceCompare'=>$vendorDir.'/EncryptionLibrary/Interfaces/ICompare.php',
+    'EncryptionLibrary_InterfaceOneWay'=>$vendorDir.'/EncryptionLibrary/Interfaces/IOneWayEncrypt.php',
+    'EncryptionLibrary_InterfaceReverse'=>$vendorDir.'/EncryptionLibrary/Interfaces/IReverseEncrypt.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',

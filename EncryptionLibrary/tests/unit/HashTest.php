@@ -38,4 +38,8 @@ class HashTest extends \Codeception\Test\Unit
         $encrypted = "0d00b46abd0abdcd38846757261b2daf";
         $this->tester->assertEquals($encrypted, EncryptClient::CreateClient($plainText, $method)->CryptMyData());
     }    
+    
+    public function testGetSupportedHasingAlogs(){
+        $this->tester->assertTrue(is_array(EncryptClient::GetSupportedHasingAlogs()));
+    }
 }
